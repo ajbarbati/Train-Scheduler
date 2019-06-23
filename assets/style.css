@@ -1,0 +1,10 @@
+th,
+td {
+    border-width: 10px;
+    border-color: black;
+    border-left: solid;
+    border-right: solid;
+    border-radius: 30%;
+    padding: 15px;
+    margin: 10px;
+}
