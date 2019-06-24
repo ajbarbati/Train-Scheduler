@@ -48,7 +48,7 @@ $(document).ready(function() {
 
         var trainName = childSnapshot.val().name
         var destination = childSnapshot.val().destination
-        var trainTime = childSnapshot.val().start
+        var firstTrain = childSnapshot.val().start
         var frequency = childSnapshot.val().frequency
 
         var frequency
@@ -64,14 +64,17 @@ $(document).ready(function() {
         var currentTime = moment()
         console.log('CURRENT TIME: ' + moment(currentTime).format('HH:mm'))
 
-        var diffTime = moment().diff(moment(firstTimeConverted), "minutes")
+        var diffTime = moment().diff(moment(timeConverted), "minutes")
         console.log('DIFFERENCE IN TIME: ' + diffTime)
 
         var tRemainder = diffTime % frequency
         console.log(tRemainder)
 
-        var tMinutesTillTrain = trainfreq - tRemainder
-        console.log('MINUTES TILL TRAIN: ' + moment(nextTrain).format('HH:mm'))
+        var tMinutesTillTrain = frequency - tRemainder
+        console.log('MINUTES TILL TRAIN: ' + tMinutesTillTrain)
+
+        var nextTrain = moment().add(tMinutesTillTrain, "minutes")
+        console.log('ARRIVAL TIME: ' + moment(nextTrain).format("HH:mm"))
 
         $('#trains').append('<tr><td>' + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + moment(nextTrain).format('HH:mm') + "</td><td>" + tMinutesTillTrain + '</td></tr>')
     })
